@@ -306,11 +306,8 @@ function mergeRemote(rd){
   S.delp=U2(S.delp,rd.delp);S.plan=add(S.plan,rd.plan,"id").filter(x=>!S.delp.includes(x.id));
   return rep||sig()!==before;
 }
-const MIGR=[
- {id:"muvvppvp",n:"Tren superior",items:["pi","rm","ps","jl","vl","cmuvw1w2z","cbi"]},
- {id:"muvxvmlm",n:"Tren inferior",items:["cmuvwxjzk","rd","cmuvxf7so","cmuvxedyj","cmuvxg2c7","cmuvxgqlc","cmuvxieti"]},
- {id:"mv0ioinj",n:"Cuerpo completo",items:["bp","jl","cmuvwxjzk","cmuvxedyj","pm","vl","cmv0ioink","tpf"]}];
-const OLDR=["mw2empuje","mw1tiron"];
+const MIGR=[];
+const OLDR=[];
 function migR(){
   const v=S.mig||0;if(v>=2)return false;
   if(v<1)MIGR.forEach(m=>{const r=S.cr.find(x=>x.id===m.id)||S.cr.find(x=>String(x.n).trim().toLowerCase()===m.n.toLowerCase());
@@ -324,8 +321,8 @@ const BAR=["sq","bp","pib","rd","pg"],PC={25:"#E2272B",20:"#3B7BE8",15:"#F2C500"
 let bd=null,ce=null,cf=null,sumv=null,wl=null,dls=null,AUD=null;
 let S={sessions:[],body:[],meas:[],prof:null,tw:0,cx:[],cr:[],del:[],notes:{},delr:[],delb:[]},view=1,sel="",ref=null,tm=null;
 try{const x=JSON.parse(localStorage.getItem("gym_fer")||"null");if(x&&x.sessions)S=x}catch(e){}
-if(!S.fers){S.fers=1;if(!(S.cr||[]).length)S.cr=[{id:"fera",n:"Día A",items:["pr","jl","pgc","pm","abd","ab"]},{id:"ferb",n:"Día B",items:["fnagb","rm","pbm","ad","fnapmr","fnapa"]},{id:"ferc",n:"Día C",items:["pr","rmm","fp","pgc","gm","el"]}]}
-S.body=S.body||[];S.meas=S.meas||[];S.prof=S.prof||null;S.tw=S.tw||0;S.cx=S.cx||[];S.cr=S.cr||[];S.del=S.del||[];S.notes=S.notes||{};S.delr=S.delr||[];S.delb=S.delb||[];S.plan=S.plan||[];S.delp=S.delp||[];S.cardio=S.cardio||[];S.delc=S.delc||[];if(S.name===undefined)S.name="Feña";legacyNames();fixBases();regCustom();
+if(S.fers!==2){S.fers=2;const FR=[{id:"fera",n:"Día A",items:["pr","jl","pgc","pm","abd","ab"]},{id:"ferb",n:"Día B",items:["fnagb","rm","pbm","ad","fnapmr","fnapa"]},{id:"ferc",n:"Día C",items:["pr","rmm","fp","pgc","gm","el"]}];S.cr=(S.cr||[]).filter(r=>!["muvvppvp","muvxvmlm","mv0ioinj"].includes(r.id)&&!FR.some(f=>f.id===r.id));S.cr=FR.concat(S.cr)}
+S.body=S.body||[];S.meas=S.meas||[];S.prof=S.prof||null;S.tw=S.tw||0;S.cx=S.cx||[];S.cr=S.cr||[];S.del=S.del||[];S.notes=S.notes||{};S.delr=S.delr||[];S.delb=S.delb||[];S.plan=S.plan||[];S.delp=S.delp||[];S.cardio=S.cardio||[];S.delc=S.delc||[];if(S.name===undefined)S.name="Fer";legacyNames();fixBases();regCustom();
 
 function persist(){
   const now=Date.now(),aa=act();if(aa)aa.u=now;if(ced){const x=S.sessions.find(q=>q.id===ced);if(x)x.u=now}
