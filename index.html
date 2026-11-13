@@ -202,23 +202,23 @@ function imgFor(id){
 }
 
 const EX={
-sq:{g:"Piernas",s:["Core"],n:"Sentadilla",mu:["Cuádriceps","Glúteos"],w:50,r:10,rest:120,cue:["Pies al ancho de hombros, puntas algo abiertas","Baja con la espalda neutra hasta paralelo","Rodillas siguen la línea de los pies","Sube empujando el piso con todo el pie"]},
-bp:{g:"Pecho",s:["Tríceps", "Hombros"],n:"Press banca",mu:["Pectoral","Tríceps","Hombro anterior"],w:50,r:10,rest:120,cue:["Escápulas juntas y abajo, pies firmes","Baja la barra al pecho con control","Antebrazos verticales durante todo el recorrido","Empuja hacia arriba sin despegar la cadera"]},
+sq:{g:"Piernas",s:["Core"],n:"Sentadilla",mu:["Cuádriceps","Glúteos"],w:20,r:10,rest:120,cue:["Pies al ancho de hombros, puntas algo abiertas","Baja con la espalda neutra hasta paralelo","Rodillas siguen la línea de los pies","Sube empujando el piso con todo el pie"]},
+bp:{g:"Pecho",s:["Tríceps", "Hombros"],n:"Press banca",mu:["Pectoral","Tríceps","Hombro anterior"],w:20,r:10,rest:120,cue:["Escápulas juntas y abajo, pies firmes","Baja la barra al pecho con control","Antebrazos verticales durante todo el recorrido","Empuja hacia arriba sin despegar la cadera"]},
 ps:{g:"Pecho",s:["Tríceps","Hombros"],n:"Press banca en Smith",mu:["Pectoral","Tríceps","Hombro anterior"],w:45,r:10,rest:120,cue:["Escápulas juntas y abajo, pies firmes","Ubica la banca para que la barra baje a la parte media del pecho","Baja con control y empuja sin despegar la cadera","Gira la barra para soltarla al terminar"]},
 jl:{g:"Espalda",s:["Bíceps"],n:"Jalón al pecho",mu:["Dorsales","Bíceps"],w:25,r:10,rest:90,cue:["Muslos bajo el cojín, pecho arriba","Inicia el movimiento bajando los codos","Lleva la barra a la parte alta del pecho","Sube controlando, sin balancear el tronco"]},
 pm:{g:"Hombros",s:["Tríceps"],n:"Press militar",mu:["Hombros","Tríceps"],w:5,r:10,rest:90,cue:["Glúteos y abdomen apretados, costillas abajo","Empuja en línea recta sobre la cabeza","Termina con los brazos casi extendidos","Baja hasta la clavícula con control"]},
-tp:{g:"Tríceps",s:[],n:"Tríceps en polea",mu:["Tríceps"],w:30,r:12,rest:60,cue:["Codos pegados al cuerpo y quietos","Extiende completo y aprieta abajo","Sube lento sin dejar que el peso te levante"]},
+tp:{g:"Tríceps",s:[],n:"Tríceps en polea",mu:["Tríceps"],w:15,r:12,rest:60,cue:["Codos pegados al cuerpo y quietos","Extiende completo y aprieta abajo","Sube lento sin dejar que el peso te levante"]},
 ab:{g:"Core",s:[],n:"Abdominales",mu:["Abdomen"],w:0,r:15,rest:60,cue:["Zona lumbar apoyada, costillas hacia la pelvis","Sube con control, sin tirar del cuello","Exhala al contraer"]},
-pr:{g:"Piernas",s:[],n:"Prensa unilateral",mu:["Cuádriceps","Glúteos"],w:40,r:12,rest:120,cue:["Espalda y cadera pegadas al respaldo","Baja hasta unos 90° de rodilla","No bloquees las rodillas arriba","Empuja con todo el pie, talón firme"]},
+pr:{g:"Piernas",s:[],n:"Prensa de piernas",mu:["Cuádriceps","Glúteos"],w:40,r:12,rest:120,cue:["Espalda y cadera pegadas al respaldo","Baja hasta unos 90° de rodilla","No bloquees las rodillas arriba","Empuja con todo el pie, talón firme"]},
 rm:{g:"Espalda",s:["Bíceps"],n:"Remo",mu:["Dorsales","Espalda media","Bíceps"],w:20,r:10,rest:90,cue:["Pecho apoyado o erguido, hombros abajo","Lleva los codos atrás, junta escápulas","Pausa breve atrás y vuelve controlado"]},
-pi:{g:"Pecho",s:["Hombros", "Tríceps"],n:"Press inclinado con mancuernas",mu:["Pectoral superior","Hombro anterior","Tríceps"],w:14,r:10,rest:90,cue:["Banca a unos 30°, escápulas atrás","Baja hasta la altura del pecho","Empuja arriba sin chocar las mancuernas"]},
-rd:{g:"Piernas",s:["Espalda"],n:"Peso muerto rumano",mu:["Isquiotibiales","Glúteos","Lumbar"],w:40,r:10,rest:120,cue:["Rodillas semiflexionadas y fijas","Lleva la cadera atrás, barra pegada a las piernas","Baja hasta sentir el estiramiento, espalda neutra","Sube empujando la cadera adelante"]},
+pi:{g:"Pecho",s:["Hombros", "Tríceps"],n:"Press inclinado con mancuernas",mu:["Pectoral superior","Hombro anterior","Tríceps"],w:6,r:10,rest:90,cue:["Banca a unos 30°, escápulas atrás","Baja hasta la altura del pecho","Empuja arriba sin chocar las mancuernas"]},
+rd:{g:"Piernas",s:["Espalda"],n:"Peso muerto rumano",mu:["Isquiotibiales","Glúteos","Lumbar"],w:20,r:10,rest:120,cue:["Rodillas semiflexionadas y fijas","Lleva la cadera atrás, barra pegada a las piernas","Baja hasta sentir el estiramiento, espalda neutra","Sube empujando la cadera adelante"]},
 vl:{g:"Hombros",s:[],n:"Vuelos laterales",mu:["Hombro lateral"],w:6,r:12,rest:60,cue:["Leve flexión de codos","Sube hasta la altura del hombro","Baja lento, sin impulso"]},
 fp:{g:"Hombros",s:["Espalda"],n:"Face pull",mu:["Hombro posterior","Espalda alta"],w:15,r:12,rest:60,cue:["Polea a la altura de la cara","Tira hacia la frente abriendo los codos","Pausa atrás y vuelve controlado"]},
 da:{g:"Espalda",s:["Bíceps"],n:"Dominadas asistidas",mu:["Dorsales","Bíceps"],w:0,r:8,rest:90,cue:["Agarre un poco más ancho que los hombros","Baja hasta casi extender los brazos","Sube llevando el pecho a la barra"]},
 pbm:{g:"Pecho",s:["Tríceps"],n:"Press banca con mancuernas",mu:["Pectoral","Tríceps"],w:6,r:10,rest:90,cue:["Escápulas juntas, pies firmes","Baja profundo con control","Empuja arriba sin bloquear los codos"]},
-sb:{g:"Piernas",s:[],n:"Sentadilla búlgara",mu:["Cuádriceps","Glúteos"],w:10,r:10,rest:90,cue:["Pie trasero apoyado en la banca","Tronco algo inclinado, baja vertical","La rodilla delantera sigue la línea del pie"]},
-bi:{g:"Bíceps",s:[],n:"Curl de bíceps",mu:["Bíceps"],w:12,r:10,rest:60,cue:["Codos pegados al cuerpo","Sube sin balancear el tronco","Baja lento, extensión completa"]},
+sb:{g:"Piernas",s:[],n:"Sentadilla búlgara",mu:["Cuádriceps","Glúteos"],w:6,r:10,rest:90,cue:["Pie trasero apoyado en la banca","Tronco algo inclinado, baja vertical","La rodilla delantera sigue la línea del pie"]},
+bi:{g:"Bíceps",s:[],n:"Curl de bíceps",mu:["Bíceps"],w:5,r:10,rest:60,cue:["Codos pegados al cuerpo","Sube sin balancear el tronco","Baja lento, extensión completa"]},
 pib:{g:"Pecho",s:["Hombros","Tríceps"],n:"Press inclinado con barra",mu:["Pectoral superior","Hombro anterior","Tríceps"],w:40,r:10,rest:120,cue:["Banca a unos 30° dentro del rack","Baja la barra a la parte alta del pecho","Empuja sin despegar la espalda de la banca"]},
 cp:{g:"Pecho",s:[],n:"Cruces en polea",mu:["Pectoral"],w:10,r:12,rest:60,cue:["Poleas altas, un pie adelante para estabilizar","Junta las manos frente al pecho, codos semiflexionados","Vuelve lento sintiendo el estiramiento"]},
 fb:{g:"Tríceps",s:["Pecho"],n:"Fondos de tríceps en banca",mu:["Tríceps"],w:0,r:12,rest:60,cue:["Manos en el borde de la banca, cadera cerca","Baja hasta unos 90° de codo","Empuja sin encoger los hombros"]},
@@ -232,10 +232,11 @@ el:{g:"Core",s:[],n:"Elevación de piernas tumbado",mu:["Abdomen bajo"],w:0,r:12
 ad:{g:"Piernas",s:[],n:"Aductor",mu:["Aductores"],w:20,r:15,rest:60,cue:["Espalda apoyada, rango cómodo","Junta las piernas con control","Vuelve lento sin soltar el peso"]},
 abd:{g:"Piernas",s:[],n:"Abductor",mu:["Glúteo medio","Abductores"],w:20,r:15,rest:60,cue:["Espalda apoyada, tronco firme","Abre las piernas sin balancear","Vuelve lento sin soltar el peso"]},
 gm:{g:"Piernas",s:[],n:"Gemelos en prensa",mu:["Gemelos"],w:30,r:15,rest:60,cue:["Solo la punta del pie en la plataforma","Sube lo más alto posible y pausa","Baja hasta sentir el estiramiento"]},
-pg:{g:"Piernas",s:[],n:"Puente de glúteo con barra",mu:["Glúteos","Isquiotibiales"],w:40,r:10,rest:90,cue:["Espalda alta apoyada en la banca","Empuja con los talones, aprieta glúteos arriba","Mentón al pecho, costillas abajo"]},
+pg:{g:"Piernas",s:[],n:"Puente de glúteo con barra",mu:["Glúteos","Isquiotibiales"],w:20,r:10,rest:90,cue:["Espalda alta apoyada en la banca","Empuja con los talones, aprieta glúteos arriba","Mentón al pecho, costillas abajo"]},
 fnagb:{g:"Piernas",s:["Core"],n:"Sentadilla goblet",mu:["Cuádriceps","Glúteos"],w:6,r:12,rest:90,cue:["Mancuerna pegada al pecho con las dos manos","Pies al ancho de hombros, puntas algo abiertas","Baja sentándote hacia atrás, pecho arriba","Empuja el suelo con todo el pie para subir"]},
 fnapmr:{g:"Piernas",s:["Espalda"],n:"Peso muerto rumano con mancuernas",mu:["Isquiotibiales","Glúteos"],w:6,r:12,rest:90,cue:["Mancuernas pegadas a los muslos","Lleva la cadera atrás con las rodillas casi rectas","Espalda plana, baja hasta media espinilla","Sube apretando los glúteos"]},
 fnapa:{g:"Core",s:["Hombros"],n:"Press Pallof",mu:["Abdomen","Oblicuos"],w:5,r:12,rest:60,cue:["Polea a la altura del pecho, de lado a la máquina","Lleva las manos al pecho y estira los brazos al frente","No dejes que el cable te gire","Vuelve lento y cambia de lado"]},
+fnaht:{g:"Piernas",s:["Core"],n:"Hip thrust con barra",mu:["Glúteos","Isquiotibiales"],w:20,r:10,rest:90,cue:["Espalda alta apoyada en el banco, barra sobre la cadera","Pies firmes, rodillas a 90° arriba","Sube apretando glúteos, sin arquear la lumbar","Baja lento sin soltar la tensión"]},
 pgc:{g:"Piernas",s:[],n:"Puente de glúteo (peso corporal)",mu:["Glúteos","Isquiotibiales"],w:0,r:15,rest:60,cue:["Tumbada, rodillas dobladas y pies firmes","Sube la cadera apretando los glúteos","Pausa arriba 1 segundo, sin arquear la espalda","Baja lento"]}
 };
 const FOCUS={pecho:["bp","pib","pi","cp","fb"],espalda:["jl","rm","rmm","da","vp"],piernas:["sq","pr","rd","sb","ad","gm"],hombros:["pm","vl","vp","fp","en"],brazos:["bi","cbi","cb","tp","tpf"],core:["ab","fnapa","el"],full:["pr","jl","pgc","pm","abd","ab"],empuje:["ps","pm","pi","cp","vl","tp","tpf"],tiron:["jl","rm","rmm","vp","fp","bi"],gluteo:["pg","sq","sb","rd","abd"]};
@@ -322,7 +323,7 @@ let bd=null,ce=null,cf=null,sumv=null,wl=null,dls=null,AUD=null;
 let S={sessions:[],body:[],meas:[],prof:null,tw:0,cx:[],cr:[],del:[],notes:{},delr:[],delb:[]},view=1,sel="",ref=null,tm=null;
 try{const x=JSON.parse(localStorage.getItem("gym_fer")||"null");if(x&&x.sessions)S=x}catch(e){}
 if(S.fers!==2){S.fers=2;const FR=[{id:"fera",n:"Día A",items:["pr","jl","pgc","pm","abd","ab"]},{id:"ferb",n:"Día B",items:["fnagb","rm","pbm","ad","fnapmr","fnapa"]},{id:"ferc",n:"Día C",items:["pr","rmm","fp","pgc","gm","el"]}];S.cr=(S.cr||[]).filter(r=>!["muvvppvp","muvxvmlm","mv0ioinj"].includes(r.id)&&!FR.some(f=>f.id===r.id));S.cr=FR.concat(S.cr)}
-S.body=S.body||[];S.meas=S.meas||[];S.prof=S.prof||null;S.tw=S.tw||0;S.cx=S.cx||[];S.cr=S.cr||[];S.del=S.del||[];S.notes=S.notes||{};S.delr=S.delr||[];S.delb=S.delb||[];S.plan=S.plan||[];S.delp=S.delp||[];S.cardio=S.cardio||[];S.delc=S.delc||[];if(S.name===undefined)S.name="Fer";legacyNames();fixBases();regCustom();
+S.body=S.body||[];S.meas=S.meas||[];S.prof=S.prof||null;S.tw=S.tw||0;S.cx=S.cx||[];S.cr=S.cr||[];S.del=S.del||[];S.notes=S.notes||{};S.delr=S.delr||[];S.delb=S.delb||[];S.plan=S.plan||[];S.delp=S.delp||[];S.cardio=S.cardio||[];S.delc=S.delc||[];if(S.name===undefined)S.name="Fer";S.phase=S.phase||1;S.phStart=S.phStart||isoOf(new Date());legacyNames();fixBases();regCustom();
 
 function persist(){
   const now=Date.now(),aa=act();if(aa)aa.u=now;if(ced){const x=S.sessions.find(q=>q.id===ced);if(x)x.u=now}
@@ -594,6 +595,36 @@ function bkImport(rd){rd=rd&&rd.data&&Array.isArray(rd.data.sessions)?rd.data:rd
 function ajustes(){
   return'<div class="card" style="margin-top:12px"><div class="en">Ajustes</div><div class="row" style="margin-top:10px"><button class="btn g sm" data-a="editprof">Cambiar objetivo</button>'+(dls?'<button class="btn g sm" data-a="exp">Exportar datos</button>':'')+'</div><div class="row" style="margin-top:8px"><button class="btn g sm" data-a="bkexp">Exportar copia</button><button class="btn g sm" data-a="bkimp">Importar copia</button></div><input type="file" id="bkf" accept=".json,application/json" hidden>'+(S.sessions.length?'<button class="btn g sm" style="margin-top:8px;color:var(--red)" data-a="wipe">'+(cf==="wipe"?"¿Seguro? Toca de nuevo":"Borrar historial de entrenamientos")+'</button>'+(cf==="wipe"?'<div class="mut" style="margin-top:6px">Se borrarán '+S.sessions.length+' entrenamientos. Tu objetivo, peso, medidas y rutinas se mantienen.</div>':''):'')+'<div class="mut" id="ex" style="margin-top:8px">Versión 1-nov · Estado: <span id="sy">'+(syncTxt||"conectando…")+'</span></div><div class="mut" style="margin-top:4px;font-size:11px">Ilustración del mapa muscular: Muscles-simplified.svg (Body-Heatmap-Repo). Exercise data by <a href="https://repdb.co" target="_blank" rel="noopener" style="color:inherit">RepDB (repdb.co)</a>.</div></div>';
 }
+
+const PHN=["Adaptación","Construcción","Técnica y carga"];
+const PHR={
+ 1:{A:["pr","jl","pgc","pm","abd","ab"],B:["fnagb","rm","pbm","ad","fnapmr","fnapa"],C:["pr","rmm","fp","pgc","gm","el"]},
+ 2:{A:["fnagb","jl","fnapmr","pi","abd","fnapa"],B:["pr","rmm","pm","pg","ad","el"],C:["sb","rm","pbm","fp","bi","ab"]},
+ 3:{A:["sq","rd","da","pm","abd","fnapa"],B:["fnaht","bp","rm","sb","ad","el"],C:["pr","pi","rmm","fp","tp","gm"]}};
+const PHM=["Aprende los movimientos con poco peso. Termina cada serie con 2 o 3 repeticiones de sobra.","Más peso libre y mancuernas. Sube la carga cuando completes todas las series con buena técnica.","Ejercicios más técnicos y con más carga. Si se pierde la forma, baja el peso."];
+const PHC=["Cardio al final: 15–20 min en trotadora (caminata inclinada 5–8 %, 5 km/h) o bicicleta a ritmo constante. Sin intervalos todavía.","Cardio al final: 20–25 min. Dos días con intervalos suaves (1 min más fuerte y 2 min suave, 5–6 rondas) y uno a ritmo constante.","Cardio al final: 20–30 min. Intervalos de 1 min fuerte y 1 min suave (8 rondas) y un día continuo."];
+function phInfo(){
+  const ph=S.phase||1,ss=S.sessions.filter(q=>q.fin&&q.d>=S.phStart).sort((a,b)=>a.id-b.id);
+  const days=ss.length?dd(iso(),ss[0].d):0,last=ss.slice(-3),sets=last.flatMap(q=>q.items.flatMap(it=>it.sets)),pct=sets.length?sets.filter(q=>q.ok).length/sets.length:0;
+  const okN=ss.length>=10,okD=days>=26,okQ=last.length>=3&&pct>=0.9;
+  return{ph,n:ss.length,wk:Math.floor(days/7),okN,okD,okQ,ready:ph<3&&okN&&okD&&okQ};
+}
+function phaseCard(){
+  const I=phInfo(),ph=I.ph,ck=(ok,t)=>'<div style="display:flex;gap:8px;padding:3px 0"><span style="width:16px;color:'+(ok?"var(--ac)":"var(--mut)")+'">'+(ok?"✓":"·")+'</span><span class="'+(ok?"":"mut")+'">'+t+'</span></div>';
+  let h='<div class="card"><div class="mut">Tu plan</div><div class="en">Fase '+ph+' · '+PHN[ph-1]+'</div><div class="mut" style="margin:4px 0 8px;line-height:1.45">'+PHM[ph-1]+'</div>';
+  if(ph<3){
+    h+=ck(I.okN,"10 sesiones completas ("+Math.min(I.n,10)+" de 10)")+ck(I.okD,"4 semanas entrenando ("+Math.min(I.wk,4)+" de 4)")+ck(I.okQ,"Últimas 3 sesiones con 9 de cada 10 series completas");
+    h+=I.ready?'<div class="note" style="margin:10px 0 0;line-height:1.45">Lista para la Fase '+(ph+1)+'. Reemplaza el Día A, B y C por ejercicios más técnicos y con más peso.</div><button class="btn" style="margin-top:10px" data-a="phgo">Pasar a la Fase '+(ph+1)+'</button>':'<button class="lnk" style="margin-top:10px" data-a="phgo">Avanzar igual a la Fase '+(ph+1)+'</button>';
+  }else h+='<div class="mut" style="line-height:1.45">Es la fase final: sigue subiendo carga poco a poco. Cuando se estanque, cambiamos el plan.</div>';
+  return h+'<div class="mut" style="margin-top:10px;line-height:1.45">'+PHC[ph-1]+'</div></div>';
+}
+function phAdvance(){
+  const I=phInfo();if(I.ph>=3)return;
+  if(!confirm((I.ready?"":"Aún no cumples todos los criterios. ")+"¿Pasar a la Fase "+(I.ph+1)+"? Se reemplazan el Día A, B y C por los ejercicios nuevos.\n\nTus registros anteriores no se borran."))return;
+  const nx=I.ph+1,P=PHR[nx];
+  [["fera","A"],["ferb","B"],["ferc","C"]].forEach(([id,k])=>{const r=S.cr.find(x=>x.id===id);if(r)r.items=P[k].slice();else S.cr.push({id,n:"Día "+k,items:P[k].slice()})});
+  S.phase=nx;S.phStart=iso();regCustom();persist();toast("Ahora estás en la Fase "+nx);render();
+}
 function today(){
   if(ce)return exForm();
   if(bd)return builder();
@@ -614,7 +645,7 @@ function today(){
     const note=AW?'<div class="mut" style="margin:-2px 0 10px;line-height:1.4">'+AW.name+' · '+AW.why+(AW.blocked.length?' Ayer trabajaste '+AW.blocked.join(", ").toLowerCase()+': sin compuestos para eso hoy.':"")+'</div>'+(AW.fatigue?'<div class="pu" style="margin:0 0 10px">Día Extra: Volumen ajustado para recuperación</div>':""):SHD?'<div class="warn">Fatiga detectada en '+SHD.names.join(", ")+'. Usa "Adaptativo" o reduce el volumen de hoy.<button class="btn g sm" style="margin-top:8px" data-a="fatadj">'+(fa?"✓ Aplicado: −1 serie en fatigados (toca para deshacer)":"Aplicar -1 serie en fatigados")+'</button></div>':"";
     hero='<div class="card hero"><div class="big" style="margin:4px 0 8px">'+FN[pick]+'</div><div class="chips">'+(keys.includes(pick)?keys:[pick].concat(keys)).map(k=>'<button data-a="pick" data-k="'+k+'" class="'+(pick===k?"on":"")+'">'+(k[0]==="u"?FN[k]:(SH[k]||FN[k]))+'</button>').join("")+'</div>'+note+'<div class="mut" style="margin:-2px 0 10px">Día de '+STN[sty][0].toLowerCase()+' · <button class="lnk" data-a="tsty">'+(showSty?"Listo":"Cambiar")+'</button></div>'+(showSty?'<div class="rts" style="margin:0 0 6px">'+["f","h","m"].map(k=>'<button data-a="sty" data-k="'+k+'" class="'+(sty===k?"on":"")+'">'+STN[k][0]+'</button>').join("")+'</div><div class="mut" style="margin-bottom:10px">'+STN[sty][1]+'</div>':"")+FL(pick).map(id=>'<div style="display:flex;justify-content:space-between;padding:5px 0"><span>'+EX[id].n+(benchFor(id)?' <span class="mut" style="font-size:13px">· '+benchFor(id)[0]+'</span>':'')+'</span><span class="mut">'+nSets(id,sty)+' × '+rtxt(id,sty)+'</span></div>').join("")+'<button class="btn" style="margin-top:12px" data-a="start">Empezar entrenamiento</button></div>';adaptR=null;
     }
-    return bkRem()+tplans+hero+thisWeek()+cardioCard()+coach(ad)+myCard();
+    return bkRem()+tplans+hero+phaseCard()+thisWeek()+cardioCard()+coach(ad)+myCard();
   }
   const RC=records(),tot=a.items.reduce((t,i)=>t+i.sets.length,0),dn=a.items.reduce((t,i)=>t+i.sets.filter(q=>q.ok).length,0);
   const curI=a.items.findIndex(it=>it.sets.some(q=>!q.ok));
@@ -1818,6 +1849,7 @@ function clickH(e){
   else if(a==="swap")openSwap(i);
   else if(a==="swpick")openSwapConfirm(i,b.dataset.e);
   else if(a==="swback")openSwap(i);
+  else if(a==="phgo")phAdvance();
   else if(a==="swok"){const k=b.dataset.e,ss2=act();if(ss2&&ss2.items[i]&&EX[k]){const old=EX[ss2.items[i].ex].n;ss2.items[i]=mk(k,ss2.st);persist();closeTech();toast("Cambiado: "+old+" → "+EX[k].n);render()}}
   else if(a==="addw"){const v=num($("wi").value);if(v>0){S.delb=S.delb.filter(x=>x!==iso());S.body=S.body.filter(x=>x.d!==iso());S.body.push({d:iso(),w:v});persist();render()}}
   else if(a==="delw"){S.delb.push(b.dataset.d);S.body=S.body.filter(x=>x.d!==b.dataset.d);persist();render()}
