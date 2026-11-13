@@ -324,6 +324,7 @@ const BAR=["sq","bp","pib","rd","pg"],PC={25:"#E2272B",20:"#3B7BE8",15:"#F2C500"
 let bd=null,ce=null,cf=null,sumv=null,wl=null,dls=null,AUD=null;
 let S={sessions:[],body:[],meas:[],prof:null,tw:0,cx:[],cr:[],del:[],notes:{},delr:[],delb:[]},view=1,sel="",ref=null,tm=null;
 try{const x=JSON.parse(localStorage.getItem("gym_fer")||"null");if(x&&x.sessions)S=x}catch(e){}
+if(!S.fers){S.fers=1;if(!(S.cr||[]).length)S.cr=[{id:"fera",n:"Día A",items:["pr","jl","pgc","pm","abd","ab"]},{id:"ferb",n:"Día B",items:["fnagb","rm","pbm","ad","fnapmr","fnapa"]},{id:"ferc",n:"Día C",items:["pr","rmm","fp","pgc","gm","el"]}]}
 S.body=S.body||[];S.meas=S.meas||[];S.prof=S.prof||null;S.tw=S.tw||0;S.cx=S.cx||[];S.cr=S.cr||[];S.del=S.del||[];S.notes=S.notes||{};S.delr=S.delr||[];S.delb=S.delb||[];S.plan=S.plan||[];S.delp=S.delp||[];S.cardio=S.cardio||[];S.delc=S.delc||[];if(S.name===undefined)S.name="Feña";legacyNames();fixBases();regCustom();
 
 function persist(){
@@ -523,8 +524,8 @@ const FL=k=>k==="adapt"?buildAdaptiveWorkout().ids:k[0]==="u"||(S.prof&&S.prof.a
 const WD=["L","M","X","J","V","S","D"],wd=()=>(new Date().getDay()+6)%7;
 function week(){
   const p=S.prof||tp,G=gl(p),tpl0={3:[[0,"full"],[2,"fullb"],[4,"fullc"]],4:[[0,"empuje"],[1,"piernas"],[3,"tiron"],[4,"brazos"]],5:[[0,"empuje"],[1,"piernas"],[2,"tiron"],[4,"hombros"],[5,"brazos"]]};
-  const RK=n=>{if(n==="adapt")return"adapt";const r=S.cr.find(x=>x.n===n);return r?"u"+r.id:null},mod={3:["Tren superior","Tren inferior","Cuerpo completo"],4:["Tren superior","Tren inferior","Cuerpo completo","adapt"]}[p.days],mk_=mod&&mod.map(RK);
-  const tpl=(mk_&&mk_.every(Boolean)?(p.days===3?[[0,mk_[0]],[1,mk_[1]],[3,mk_[2]]]:[[0,mk_[0]],[1,mk_[1]],[3,mk_[2]],[4,mk_[3]]]):tpl0[p.days])||[],w=[0,1,2,3,4,5,6].map(()=>({t:"r"})),ord=[];
+  const RK=n=>{if(n==="adapt")return"adapt";const r=S.cr.find(x=>x.n===n);return r?"u"+r.id:null},mod={3:["Día A","Día B","Día C"],4:["Tren superior","Tren inferior","Cuerpo completo","adapt"]}[p.days],mk_=mod&&mod.map(RK);
+  const tpl=(mk_&&mk_.every(Boolean)?(p.days===3?[[0,mk_[0]],[2,mk_[1]],[4,mk_[2]]]:[[0,mk_[0]],[1,mk_[1]],[3,mk_[2]],[4,mk_[3]]]):tpl0[p.days])||[],w=[0,1,2,3,4,5,6].map(()=>({t:"r"})),ord=[];
   G.forEach(g=>STY[g].forEach(x=>{if(!ord.includes(x))ord.push(x)}));
   tpl.forEach((x,i)=>w[x[0]]={t:"f",f:x[1],st:x[1][0]==="u"||x[1]==="adapt"?"h":ord[i%ord.length]});
   let c=0;const nc=Math.max(...G.map(g=>({grasa:3,recomp:2,musc:1,fuerza:0}[g]||0)));
@@ -605,8 +606,8 @@ function today(){
   if(!a){
     const ad=advice();if(pick&&!FOCUS[pick]&&pick!=="adapt")pick=null;
     if(pick===null&&S.cr.length){const lastU=k=>{const x=S.sessions.filter(q=>q.fin&&q.rt===k).sort((m,n)=>n.id-m.id)[0];return x?x.id:0};pick=S.cr.map(r=>"u"+r.id).sort((m,n)=>lastU(m)-lastU(n))[0]}
-    const ORD=["tren superior","tren inferior","cuerpo completo"],oi=r=>{const i=ORD.indexOf(String(r.n).trim().toLowerCase());return i<0?9:i};
-    const keys=S.cr.length?S.cr.slice().sort((a,b)=>oi(a)-oi(b)).map(r=>"u"+r.id).concat(["adapt"]):Object.keys(FOCUS).filter(k=>k[0]!=="u");
+    const ORD=["día a","día b","día c"],oi=r=>{const i=ORD.indexOf(String(r.n).trim().toLowerCase());return i<0?9:i};
+    const keys=S.cr.length?S.cr.slice().sort((a,b)=>oi(a)-oi(b)).map(r=>"u"+r.id):Object.keys(FOCUS).filter(k=>k[0]!=="u");
     const tplans=(S.plan||[]).filter(q=>q.d===iso()).map(planCard).join("");
     const lbl=pick&&pick[0]==="u"?"Tu rutina":"Entrenar hoy";
     let hero;
