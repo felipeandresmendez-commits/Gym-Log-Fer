@@ -292,7 +292,7 @@ function regCustom(){
 let syncTxt="",crewRef=null,crewCol=null,crew=[],U=null,pnames={},myId=null,ced=null,noteEx=null,moreEx=null,showSty=false;
 function toast(m){const t=$("toast");if(!t)return;t.textContent=m;t.style.display="block";clearTimeout(toast.h);toast.h=setTimeout(()=>{t.style.display="none"},2600)}
 function mergeRemote(rd){
-  if(!rd)return false;S.plan=S.plan||[];S.delp=S.delp||[];S.cardio=S.cardio||[];S.delc=S.delc||[];const sig=()=>[S.sessions.length,S.cr.length,S.cx.length,S.body.length,S.meas.length,S.plan.length,S.cardio.length].join();const before=sig();
+  if(!rd)return false;S.plan=S.plan||[];S.delp=S.delp||[];S.cardio=S.cardio||[];S.delc=S.delc||[];S.steps=S.steps||[];S.delst=S.delst||[];const sig=()=>[S.sessions.length,S.cr.length,S.cx.length,S.body.length,S.meas.length,S.plan.length,S.cardio.length,S.steps.map(x=>x.d+x.n+(x.u||0)).join("")].join();const before=sig();
   const U2=(a,b)=>[...new Set((a||[]).concat(b||[]))];
   S.del=U2(S.del,rd.del);S.delr=U2(S.delr,rd.delr);S.delb=U2(S.delb,rd.delb);
   const add=(loc,rem,key)=>{const k=new Set(loc.map(x=>x[key]));return loc.concat((rem||[]).filter(x=>!k.has(x[key])))};
@@ -306,6 +306,7 @@ function mergeRemote(rd){
   S.notes=Object.assign({},rd.notes||{},S.notes);
   S.delc=U2(S.delc,rd.delc);if(rd.base)S.base=Object.assign({},rd.base,S.base||{});S.cardio=add(S.cardio,rd.cardio,"id").filter(x=>!S.delc.includes(x.id));
   S.delp=U2(S.delp,rd.delp);S.plan=add(S.plan,rd.plan,"id").filter(x=>!S.delp.includes(x.id));
+  S.delst=U2(S.delst,rd.delst);{const sm=new Map(S.steps.map(x=>[x.d,x]));(rd.steps||[]).forEach(r=>{const l=sm.get(r.d);if(!l||(r.u||0)>(l.u||0))sm.set(r.d,r)});S.steps=[...sm.values()].filter(x=>!S.delst.includes(x.d))}if(rd.stg&&!S.stg)S.stg=rd.stg;
   return rep||sig()!==before;
 }
 const MIGR=[];
@@ -324,13 +325,13 @@ let bd=null,ce=null,cf=null,sumv=null,wl=null,dls=null,AUD=null;
 let S={sessions:[],body:[],meas:[],prof:null,tw:0,cx:[],cr:[],del:[],notes:{},delr:[],delb:[]},view=1,sel="",ref=null,tm=null;
 try{const x=JSON.parse(localStorage.getItem("gym_fer")||"null");if(x&&x.sessions)S=x}catch(e){}
 if(S.fers!==2){S.fers=2;const FR=[{id:"fera",n:"Día A",items:["pr","jl","pgc","pm","abd","ab"]},{id:"ferb",n:"Día B",items:["fnagb","rm","pbm","ad","fnapmr","fnapa"]},{id:"ferc",n:"Día C",items:["pr","rmm","fp","pgc","gm","el"]}];S.cr=(S.cr||[]).filter(r=>!["muvvppvp","muvxvmlm","mv0ioinj"].includes(r.id)&&!FR.some(f=>f.id===r.id));S.cr=FR.concat(S.cr)}
-S.body=S.body||[];S.meas=S.meas||[];S.prof=S.prof||null;S.tw=S.tw||0;S.cx=S.cx||[];S.cr=S.cr||[];S.del=S.del||[];S.notes=S.notes||{};S.delr=S.delr||[];S.delb=S.delb||[];S.plan=S.plan||[];S.delp=S.delp||[];S.cardio=S.cardio||[];S.delc=S.delc||[];if(S.name===undefined)S.name="Fer";S.phase=S.phase||1;S.phStart=S.phStart||isoOf(new Date());legacyNames();fixBases();regCustom();
+S.body=S.body||[];S.meas=S.meas||[];S.prof=S.prof||null;S.tw=S.tw||0;S.cx=S.cx||[];S.cr=S.cr||[];S.del=S.del||[];S.notes=S.notes||{};S.delr=S.delr||[];S.delb=S.delb||[];S.plan=S.plan||[];S.delp=S.delp||[];S.cardio=S.cardio||[];S.delc=S.delc||[];S.steps=S.steps||[];S.delst=S.delst||[];S.stg=S.stg||0;if(S.name===undefined)S.name="Fer";S.phase=S.phase||1;S.phStart=S.phStart||isoOf(new Date());legacyNames();fixBases();regCustom();
 
 function persist(){
   const now=Date.now(),aa=act();if(aa)aa.u=now;if(ced){const x=S.sessions.find(q=>q.id===ced);if(x)x.u=now}
   try{localStorage.setItem("gym_fer",JSON.stringify(S))}catch(e){}
   if(!ref)return;clearTimeout(tm);
-  tm=setTimeout(()=>ref.get().then(sn=>{if(sn&&sn.exists&&mergeRemote(sn.data())){regCustom();try{localStorage.setItem("gym_fer",JSON.stringify(S))}catch(e){}if(!document.activeElement||document.activeElement.tagName!=="INPUT")render()}}).catch(()=>{}).then(()=>ref.set({sessions:S.sessions,body:S.body,meas:S.meas,prof:S.prof,tw:S.tw,cx:S.cx,cr:S.cr,del:S.del,notes:S.notes,delr:S.delr,delb:S.delb,plan:S.plan||[],delp:S.delp||[],cardio:S.cardio||[],delc:S.delc||[],mig:S.mig||0,base:S.base||{}})).then(()=>{setSy("Sincronizado");pushCrew()}).catch(()=>{setSy("Guardado en este dispositivo")}),600);
+  tm=setTimeout(()=>ref.get().then(sn=>{if(sn&&sn.exists&&mergeRemote(sn.data())){regCustom();try{localStorage.setItem("gym_fer",JSON.stringify(S))}catch(e){}if(!document.activeElement||document.activeElement.tagName!=="INPUT")render()}}).catch(()=>{}).then(()=>ref.set({sessions:S.sessions,body:S.body,meas:S.meas,prof:S.prof,tw:S.tw,cx:S.cx,cr:S.cr,del:S.del,notes:S.notes,delr:S.delr,delb:S.delb,plan:S.plan||[],delp:S.delp||[],cardio:S.cardio||[],delc:S.delc||[],steps:S.steps||[],delst:S.delst||[],stg:S.stg||0,mig:S.mig||0,base:S.base||{}})).then(()=>{setSy("Sincronizado");pushCrew()}).catch(()=>{setSy("Guardado en este dispositivo")}),600);
 }
 async function init(){
   try{
@@ -646,7 +647,7 @@ function today(){
     const note=AW?'<div class="mut" style="margin:-2px 0 10px;line-height:1.4">'+AW.name+' · '+AW.why+(AW.blocked.length?' Ayer trabajaste '+AW.blocked.join(", ").toLowerCase()+': sin compuestos para eso hoy.':"")+'</div>'+(AW.fatigue?'<div class="pu" style="margin:0 0 10px">Día Extra: Volumen ajustado para recuperación</div>':""):SHD?'<div class="warn">Fatiga detectada en '+SHD.names.join(", ")+'. Usa "Adaptativo" o reduce el volumen de hoy.<button class="btn g sm" style="margin-top:8px" data-a="fatadj">'+(fa?"✓ Aplicado: −1 serie en fatigados (toca para deshacer)":"Aplicar -1 serie en fatigados")+'</button></div>':"";
     hero='<div class="card hero"><div class="big" style="margin:4px 0 8px">'+FN[pick]+'</div><div class="chips">'+(keys.includes(pick)?keys:[pick].concat(keys)).map(k=>'<button data-a="pick" data-k="'+k+'" class="'+(pick===k?"on":"")+'">'+(k[0]==="u"?FN[k]:(SH[k]||FN[k]))+'</button>').join("")+'</div>'+note+'<div class="mut" style="margin:-2px 0 10px">Día de '+STN[sty][0].toLowerCase()+' · <button class="lnk" data-a="tsty">'+(showSty?"Listo":"Cambiar")+'</button></div>'+(showSty?'<div class="rts" style="margin:0 0 6px">'+["f","h","m"].map(k=>'<button data-a="sty" data-k="'+k+'" class="'+(sty===k?"on":"")+'">'+STN[k][0]+'</button>').join("")+'</div><div class="mut" style="margin-bottom:10px">'+STN[sty][1]+'</div>':"")+FL(pick).map(id=>'<div style="display:flex;justify-content:space-between;padding:5px 0"><span>'+EX[id].n+(benchFor(id)?' <span class="mut" style="font-size:13px">· '+benchFor(id)[0]+'</span>':'')+'</span><span class="mut">'+nSets(id,sty)+' × '+rtxt(id,sty)+'</span></div>').join("")+'<button class="btn" style="margin-top:12px" data-a="start">Empezar entrenamiento</button></div>';adaptR=null;
     }
-    return bkRem()+tplans+hero+phaseCard()+thisWeek()+cardioCard()+coach(ad)+myCard();
+    return bkRem()+tplans+hero+phaseCard()+thisWeek()+cardioCard()+stepsCard()+coach(ad)+myCard();
   }
   const RC=records(),tot=a.items.reduce((t,i)=>t+i.sets.length,0),dn=a.items.reduce((t,i)=>t+i.sets.filter(q=>q.ok).length,0);
   const curI=a.items.findIndex(it=>it.sets.some(q=>!q.ok));
@@ -669,9 +670,22 @@ function today(){
 }
 const CM={trot:{n:"Trotadora",f:[["min","Minutos"],["km","Distancia (km)"],["inc","Inclinación (%)"],["vel","Velocidad (km/h)"]]},spin:{n:"Bici spinning",f:[["min","Minutos"],["km","Distancia (km)"],["lvl","Nivel de resistencia"]]},air:{n:"Air bike",f:[["min","Minutos"],["cal","Calorías (pantalla)"]]},remo:{n:"Remo",f:[["min","Minutos"],["mt","Metros"]]},walk:{n:"Caminata afuera",f:[["min","Minutos"],["km","Distancia (km)"]]}};
 const CI={s:"Suave",m:"Moderada",i:"Intensa"};
-let cvf=null;
+let cvf=null,stEd=false;
 function cdSum(c){const x=CM[c.m]||{n:"Cardio"};const p=[c.min+" min"];if(c.km)p.push(fk(c.km)+" km");if(c.mt)p.push(c.mt+" m");if(c.inc)p.push(fk(c.inc)+"% incl.");if(c.vel)p.push(fk(c.vel)+" km/h");if(c.lvl)p.push("nivel "+c.lvl);if(c.cal)p.push(c.cal+" cal");return{n:x.n,t:p.join(" · "),i:CI[c.i]||""}}
 function cardioWeek(){const mon=new Date();mon.setDate(mon.getDate()-wd());const a=isoOf(mon);const L=(S.cardio||[]).filter(c=>c.d>=a&&c.d<=iso());return{n:L.length,min:L.reduce((t,c)=>t+(+c.min||0),0)}}
+const fmN=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,".");
+const stDay=n=>{const d=new Date();d.setDate(d.getDate()-n);return isoOf(d)};
+function stepsCard(){
+  const t=iso(),m=new Map((S.steps||[]).map(x=>[x.d,x.n])),g=S.stg||8000,td=m.get(t)||0;
+  const days=[6,5,4,3,2,1,0].map(n=>{const d=stDay(n);return{d,n:m.get(d)||0}}),mx=Math.max(g,...days.map(x=>x.n)),lg=days.filter(x=>x.n>0),avg=lg.length?Math.round(lg.reduce((a,x)=>a+x.n,0)/lg.length):0,WN=["D","L","M","X","J","V","S"];
+  return'<div class="card"><div class="eh" style="align-items:center"><div class="en">Pasos</div><button class="tc" data-a="stgoal">Meta '+fmN(g)+'</button></div>'+
+  (stEd?'<div class="row" style="margin:8px 0"><input id="stg" inputmode="numeric" placeholder="Meta diaria, ej: 8000" style="text-align:left;padding:0 12px"><button class="btn g sm" style="flex:0 0 96px" data-a="stgsave">Guardar</button></div>':'')+
+  '<div class="mut" style="margin:2px 0 6px"><b style="color:var(--tx);font-size:22px">'+fmN(td)+'</b> hoy'+(td>=g?' · meta cumplida':td?' · faltan '+fmN(g-td):'')+(avg?' · promedio 7 días: '+fmN(avg):'')+'</div>'+
+  '<div style="height:8px;border-radius:4px;background:var(--rais2);overflow:hidden"><i style="display:block;height:100%;width:'+Math.min(100,Math.round(td/g*100))+'%;background:'+(td>=g?"var(--ok)":"var(--ac)")+'"></i></div>'+
+  '<div style="display:flex;gap:6px;align-items:flex-end;height:56px;margin:12px 0 4px">'+days.map(x=>'<div style="flex:1;height:100%;display:flex;align-items:flex-end" title="'+fmN(x.n)+'"><div style="width:100%;height:'+(x.n?Math.max(6,Math.round(x.n/mx*100)):0)+'%;border-radius:3px;background:'+(x.n>=g?"var(--ok)":"var(--ln)")+'"></div></div>').join("")+'</div>'+
+  '<div style="display:flex;gap:6px" class="mut">'+days.map(x=>'<span style="flex:1;text-align:center;font-size:11px">'+WN[new Date(x.d+"T12:00").getDay()]+'</span>').join("")+'</div>'+
+  '<div class="row" style="margin-top:12px;gap:6px"><select id="std" style="flex:0 0 96px"><option value="0">Hoy</option><option value="1">Ayer</option><option value="2">Anteayer</option></select><input id="sti" inputmode="numeric" placeholder="Ej: 8500" style="text-align:left;padding:0 12px"><button class="btn" style="flex:0 0 96px;padding:0" data-a="stsave">Guardar</button></div><div class="mut" style="margin-top:6px;font-size:12px">Para borrar un día, guarda 0.</div></div>';
+}
 function cardioCard(){
   if(cvf)return cardioForm();
   const w=cardioWeek(),G=S.prof?gl(S.prof):[],goal=G.includes("grasa")?3:G.includes("recomp")?2:0;
@@ -1891,6 +1905,11 @@ function clickH(e){
   else if(a==="cvsave"){const min=num(cvf.v.min);if(!(min>0)){cvf.err="Escribe los minutos.";render();return}
     const o={id:Date.now(),d:cvf.d,m:cvf.m,i:cvf.i,min:Math.round(min)};CM[cvf.m].f.forEach(f=>{if(f[0]!=="min"){const v=num(cvf.v[f[0]]);if(v>0)o[f[0]]=Math.round(v*10)/10}});
     S.cardio.push(o);cvf=null;persist();render();toast("Cardio guardado: "+o.min+" min")}
+  else if(a==="stgoal"){stEd=!stEd;render()}
+  else if(a==="stgsave"){const v=parseInt(String($("stg").value).replace(/\D/g,""))||0;if(v>=1000&&v<=100000){S.stg=v;stEd=false;persist();render();toast("Meta: "+fmN(v)+" pasos")}else toast("Escribe una meta entre 1.000 y 100.000")}
+  else if(a==="stsave"){const raw=String($("sti").value).trim();if(!raw){toast("Escribe tus pasos");return}const v=Math.min(parseInt(raw.replace(/\D/g,""))||0,200000),d=stDay(+$("std").value);S.steps=S.steps.filter(x=>x.d!==d);
+    if(v>0){S.delst=S.delst.filter(x=>x!==d);S.steps.push({d,n:v,u:Date.now()});toast("Pasos guardados: "+fmN(v))}else{if(!S.delst.includes(d))S.delst.push(d);toast("Día borrado")}
+    persist();render()}
   else if(a==="cvdel"){const id=+b.dataset.k;if(cf==="c"+id){cf=null;S.delc.push(id);S.cardio=S.cardio.filter(x=>x.id!==id);persist();render()}else{cf="c"+id;render()}}
   else if(a==="sumok"){sumv=null;render()}
   else if(a==="cfg")openCfg();
