@@ -571,7 +571,7 @@ function summary(){
   '<div class="stats"><div class="card"><div class="big">'+m.n+'</div><div class="mut">series</div></div><div class="card"><div class="big">'+Math.round(m.v).toLocaleString("es-CL")+'</div><div class="mut">kg de volumen total</div></div></div>'+
   (m.min?'<div class="card"><div class="big">'+m.min+' min</div><div class="mut">de duración</div></div>':'')+
   (m.pr.length?'<div class="card"><div class="en">Récords nuevos</div>'+m.pr.map(x=>'<div style="padding:6px 0;border-top:1px solid var(--bd)">'+x+'</div>').join("")+'</div>':'')+
-  '<button class="btn" data-a="sumok">Listo</button>';
+  trotCard(m.tv)+'<button class="btn" data-a="sumok">Listo</button>';
 }
 const TOUR=[["Así funciona Gym Log","Registras tus entrenamientos: qué ejercicios hiciste, con cuánto peso y cuántas repeticiones. Todo se guarda en tu teléfono."],["Elige tu rutina","En Entrenar ves la rutina de hoy. Cámbiala con los botones de arriba y toca Empezar entrenamiento."],["Anota cada serie","Ajusta kg y reps con + y −, o toca el número para escribirlo. Al terminar la serie, toca el check. Si el ejercicio usa discos, verás la barra con los discos de cada lado."],["Descansa con el reloj","Al marcar una serie empieza el descanso, abajo. Puedes sumar 30 segundos o saltarlo. En Técnica ves cómo se hace cada ejercicio."],["Mira tu avance","Calendario muestra los días que entrenaste y tus métricas. Cuerpo guarda tu peso y medidas. Progreso muestra tu fuerza y tus récords."],["Aprende cada ejercicio","En Ejercicios ves fotos, músculos y pasos de cada uno, sin necesidad de entrenar. Durante la rutina también los ves con el botón Técnica."],["Cuida tus datos","Tus datos viven solo en este teléfono. Cada tanto, toca el engranaje y elige Guardar copia de mis datos. Ahí también cambias el color y tu nombre."]];
 const mkSet=(n,w,r,cls,okc)=>'<div class="set'+(cls?" "+cls:"")+'"><span class="n">'+n+'</span><div class="st"><button tabindex="-1">−</button><input value="'+w+'" readonly tabindex="-1"><button tabindex="-1">+</button></div><div class="st"><button tabindex="-1">−</button><input value="'+r+'" readonly tabindex="-1"><button tabindex="-1">+</button></div><button class="ok'+(okc?" on":"")+'" tabindex="-1">'+CK+'</button></div>';
@@ -667,12 +667,12 @@ function today(){
     '<div class="row" style="margin-top:10px;gap:6px">'+'<button class="btn g sm" data-a="addset" data-i="'+i+'">+ Serie</button>'+(it.sets.length>1?'<button class="btn g sm" data-a="rmset" data-i="'+i+'">− Serie</button>':'')+'<button class="btn g sm" data-a="mex" data-i="'+i+'">'+(moreEx===i?"Menos":"Más")+'</button></div>'+
     (moreEx===i?'<div class="row" style="margin-top:6px;gap:6px">'+(it.sets.some(q=>q.ok)?'':'<button class="btn g sm" data-a="swap" data-i="'+i+'">Cambiar</button>')+'<button class="btn g sm" data-a="note" data-e="'+it.ex+'">Nota</button>'+(isPlt(it.ex)?'<button class="btn g sm" data-a="plates" data-e="'+it.ex+'" data-w="'+nxt.w+'">Discos</button>':'')+'<button class="btn g sm" data-a="rmex" data-i="'+i+'">Quitar</button></div>':'')+'</div>';
   });
-  return h+'<div class="card"><div class="en" style="font-size:17px;margin-bottom:8px">Agregar ejercicio</div><div class="row"><select id="ax" aria-label="Ejercicio">'+GR.map(g=>{const ks=Object.keys(EX).filter(k=>EX[k].g===g&&!a.items.some(it=>it.ex===k));return ks.length?'<optgroup label="'+g+'">'+ks.map(k=>'<option value="'+k+'">'+EX[k].n+'</option>').join("")+'</optgroup>':''}).join("")+'</select><button class="btn g" style="flex:0 0 96px;padding:0" data-a="addex">Agregar</button></div><button class="lnk" style="margin-top:10px" data-a="newex">¿No está? Crear ejercicio</button></div>'+'<button class="btn" data-a="fin">'+(cf==="fin"?"Quedan "+(tot-dn)+" sin marcar · Toca para terminar":"Terminar entrenamiento")+'</button><button class="btn g" style="margin-top:8px" data-a="cancel">'+(cf==="cancel"?"¿Seguro? Se borra esta sesión. Toca de nuevo":"Descartar sesión (la abrí por error)")+'</button>';
+  return h+'<div class="card"><div class="en" style="font-size:17px;margin-bottom:8px">Agregar ejercicio</div><div class="row"><select id="ax" aria-label="Ejercicio">'+GR.map(g=>{const ks=Object.keys(EX).filter(k=>EX[k].g===g&&!a.items.some(it=>it.ex===k));return ks.length?'<optgroup label="'+g+'">'+ks.map(k=>'<option value="'+k+'">'+EX[k].n+'</option>').join("")+'</optgroup>':''}).join("")+'</select><button class="btn g" style="flex:0 0 96px;padding:0" data-a="addex">Agregar</button></div><button class="lnk" style="margin-top:10px" data-a="newex">¿No está? Crear ejercicio</button></div>'+trotCard(trotFor(a.items,title(a)))+'<button class="btn" data-a="fin">'+(cf==="fin"?"Quedan "+(tot-dn)+" sin marcar · Toca para terminar":"Terminar entrenamiento")+'</button><button class="btn g" style="margin-top:8px" data-a="cancel">'+(cf==="cancel"?"¿Seguro? Se borra esta sesión. Toca de nuevo":"Descartar sesión (la abrí por error)")+'</button>';
 }
 const CM={trot:{n:"Trotadora",f:[["min","Minutos"],["km","Distancia (km)"],["inc","Inclinación (%)"],["vel","Velocidad (km/h)"]]},spin:{n:"Bici spinning",f:[["min","Minutos"],["km","Distancia (km)"],["lvl","Nivel de resistencia"]]},air:{n:"Air bike",f:[["min","Minutos"],["cal","Calorías (pantalla)"]]},remo:{n:"Remo",f:[["min","Minutos"],["mt","Metros"]]},walk:{n:"Caminata afuera",f:[["min","Minutos"],["km","Distancia (km)"]]}};
 const CI={s:"Suave",m:"Moderada",i:"Intensa"};
-let cvf=null,stEd=false;
-function cdSum(c){const x=CM[c.m]||{n:"Cardio"};const p=[c.min+" min"];if(c.km)p.push(fk(c.km)+" km");if(c.mt)p.push(c.mt+" m");if(c.inc)p.push(fk(c.inc)+"% incl.");if(c.vel)p.push(fk(c.vel)+" km/h");if(c.lvl)p.push("nivel "+c.lvl);if(c.cal)p.push(c.cal+" cal");return{n:x.n,t:p.join(" · "),i:CI[c.i]||""}}
+let cvf=null,stEd=false,tvSel=null;
+function cdSum(c){const x=CM[c.m]||{n:"Cardio"};const p=[c.min+" min"];if(c.km)p.push(fk(c.km)+" km");if(c.mt)p.push(c.mt+" m");if(c.inc)p.push(fk(c.inc)+"% incl.");if(c.vel)p.push(fk(c.vel)+" km/h");if(c.lvl)p.push("nivel "+c.lvl);if(c.cal)p.push(c.cal+" cal");return{n:x.n+(c.v&&TV[c.v]?" · "+TV[c.v].n:""),t:p.join(" · "),i:CI[c.i]||""}}
 function cardioWeek(){const mon=new Date();mon.setDate(mon.getDate()-wd());const a=isoOf(mon);const L=(S.cardio||[]).filter(c=>c.d>=a&&c.d<=iso());return{n:L.length,min:L.reduce((t,c)=>t+(+c.min||0),0)}}
 const fmN=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,".");
 function stepsDay(d){
@@ -682,6 +682,25 @@ function stepsDay(d){
   '<div class="mut" style="margin:2px 0 6px"><b style="color:var(--tx);font-size:22px">'+fmN(n)+'</b> '+(d===iso()?"hoy":"este día")+(n>=g?' · meta cumplida':n?' · faltan '+fmN(g-n):'')+(avg?' · promedio 7 días: '+fmN(avg):'')+'</div>'+
   '<div style="height:8px;border-radius:4px;background:var(--rais2);overflow:hidden"><i style="display:block;height:100%;width:'+Math.min(100,Math.round(n/g*100))+'%;background:'+(n>=g?"var(--ok)":"var(--ac)")+'"></i></div>'+
   '<div class="row" style="margin-top:12px;gap:6px"><input id="sti" inputmode="numeric" placeholder="'+(n?fmN(n):"Ej: 8500")+'" style="text-align:left;padding:0 12px"><button class="btn" style="flex:0 0 110px;padding:0" data-a="stsave" data-d="'+d+'">Guardar</button></div><div class="mut" style="margin-top:6px;font-size:12px">Para borrar este día, guarda 0.</div></div>';
+}
+/* Cardio en trotadora después de las pesas, según el tipo de sesión */
+const TV={
+v1:{n:"Caminata inclinada constante",min:20,inc:9,vel:5,i:"s",t:["20 a 25 minutos","Inclinación de 8% a 10%","Velocidad constante de 4,8 a 5,2 km/h"],o:"Quema grasa en zona 2 sin fatigar las piernas ni subir el cortisol."},
+v2:{n:"Caminata plana de recuperación",min:15,inc:1.5,vel:4.2,i:"s",t:["15 minutos al terminar","Inclinación de 1% a 2%","Ritmo muy suave: 4,0 a 4,5 km/h"],o:"Mejora el flujo de sangre y la recuperación de las piernas sin cargar la espalda baja."},
+v3:{n:"Intervalos moderados de inclinación",min:20,inc:11,vel:5.3,i:"m",t:["20 minutos en total","2 min de calentamiento plano","6 rondas: 2 min al 11% a 5,3 km/h y 1 min de pausa a 3% y paso suave"],o:"Sube un poco el gasto calórico con bajo impacto en las articulaciones. Opcional si tienes energía."}};
+const LEGR=["qua","ham","glu","cal","add","abd"];
+function trotFor(items,name){
+  let leg=0,tot=0;items.forEach(it=>{const n=it.sets.length;if(!n)return;tot+=n;if(exReg(it.ex).some(r=>LEGR.includes(r)))leg+=n});
+  const sh=tot?Math.round(leg/tot*100):0,lower=(tot>0&&sh>=60)||/inferior|pierna|gl[uú]teo/i.test(name||"");
+  return lower?{rec:"v2",alts:[],why:"Fue un día fuerte de pierna ("+sh+"% de las series): solo recuperación suave, sin sumar carga a las piernas."}:{rec:"v1",alts:["v3"],why:(sh?sh+"% de las series fueron de pierna: ":"")+"caminata de baja fatiga. Si hoy te sientes con energía, puedes elegir los intervalos moderados."};
+}
+function trotCard(r){
+  const k=tvSel&&(tvSel===r.rec||r.alts.includes(tvSel))?tvSel:r.rec,v=TV[k],done=(S.cardio||[]).some(c=>c.d===iso()&&c.v),o=[r.rec].concat(r.alts);
+  return'<div class="card"><div class="ey">CARDIO DESPUÉS DE LAS PESAS</div><div class="en" style="margin:4px 0">'+v.n+'</div><div class="mut" style="margin-bottom:8px">'+r.why+'</div>'+
+  (o.length>1?'<div class="chips" style="margin:0 0 8px;padding:0">'+o.map(x=>'<button data-a="tvpick" data-k="'+x+'" class="'+(x===k?"on":"")+'">'+TV[x].n+'</button>').join("")+'</div>':'')+
+  '<div style="line-height:1.6">'+v.t.map(x=>'• '+x).join("<br>")+'</div><div class="mut" style="margin:8px 0">'+v.o+'</div>'+
+  '<div class="note" style="margin:0 0 10px">No te sujetes de las barras de la trotadora: así mantienes la postura y el gasto real. Nada de sprints ni HIIT después de las pesas.</div>'+
+  (done?'<div class="mut">✓ Cardio de hoy registrado</div>':'<button class="btn g" data-a="tvsave" data-k="'+k+'">Registrar este cardio</button>')+'</div>';
 }
 function cardioCard(){
   if(cvf)return cardioForm();
@@ -1902,6 +1921,8 @@ function clickH(e){
   else if(a==="cvsave"){const min=num(cvf.v.min);if(!(min>0)){cvf.err="Escribe los minutos.";render();return}
     const o={id:Date.now(),d:cvf.d,m:cvf.m,i:cvf.i,min:Math.round(min)};CM[cvf.m].f.forEach(f=>{if(f[0]!=="min"){const v=num(cvf.v[f[0]]);if(v>0)o[f[0]]=Math.round(v*10)/10}});
     S.cardio.push(o);cvf=null;persist();render();toast("Cardio guardado: "+o.min+" min")}
+  else if(a==="tvpick"){tvSel=b.dataset.k;render()}
+  else if(a==="tvsave"){const v=TV[b.dataset.k];if(!v)return;S.cardio.push({id:Date.now(),d:iso(),m:"trot",i:v.i,min:v.min,inc:v.inc,vel:v.vel,v:b.dataset.k});persist();render();toast("Cardio guardado: "+v.min+" min")}
   else if(a==="stgoal"){stEd=!stEd;render()}
   else if(a==="stgsave"){const v=parseInt(String($("stg").value).replace(/\D/g,""))||0;if(v>=1000&&v<=100000){S.stg=v;stEd=false;persist();render();toast("Meta: "+fmN(v)+" pasos")}else toast("Escribe una meta entre 1.000 y 100.000")}
   else if(a==="stsave"){const raw=String($("sti").value).trim();if(!raw){toast("Escribe tus pasos");return}const v=Math.min(parseInt(raw.replace(/\D/g,""))||0,200000),d=b.dataset.d||iso();S.steps=S.steps.filter(x=>x.d!==d);
@@ -1940,7 +1961,7 @@ function clickH(e){
       if(bw.w>r.w)pr.push(EX[it.ex].n+": "+fk(bw.w)+" kg × "+bw.r+" (antes "+fk(r.w)+" kg)");
       else if(be>r.e*1.005)pr.push(EX[it.ex].n+": 1RM estimado "+Math.round(be)+" kg (antes "+Math.round(r.e)+")")});
     const mn=Math.round((Date.now()-ss.id)/60000);
-    sumv={n:done.reduce((t,it)=>t+it.sets.length,0),v:done.reduce((t,it)=>t+it.sets.reduce((u,q)=>u+q.w*q.r,0),0),min:mn>0&&mn<300?mn:0,pr,t:title(ss)+" · "+fd(ss.d)};
+    sumv={n:done.reduce((t,it)=>t+it.sets.length,0),v:done.reduce((t,it)=>t+it.sets.reduce((u,q)=>u+q.w*q.r,0),0),min:mn>0&&mn<300?mn:0,pr,tv:trotFor(done,title(ss)),t:title(ss)+" · "+fd(ss.d)};
     ss.fin=true;ss.u=Date.now();ss.items=done.map(it=>({ex:it.ex,sets:it.sets}));persist();pick=null;view=1;moreEx=null;noteEx=null;showSty=false;$("rb").style.display="none";clearInterval(rI);unlock();render();window.scrollTo(0,0);
   }
   else if(a==="cancel"){if(cf==="cancel"){cf=null;S.del.push(ss.id);S.sessions=S.sessions.filter(x=>x!==ss);persist();pick=null;moreEx=null;noteEx=null;unlock();clearInterval(rI);$("rb").style.display="none";render();window.scrollTo(0,0);toast("Sesión descartada")}else{cf="cancel";render();toast("Toca otra vez para descartar")}}
